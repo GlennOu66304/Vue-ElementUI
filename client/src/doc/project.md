@@ -1,5 +1,47 @@
 **Vue CRM ElementUI Project （Baidu Method Failed, You need to try the bilibili method) **
 
+## Goal
+
+1.Vue Side Bar render
+
+1.1.Logic:
+
+similiar like the Ant design:
+
+1. jing Ge, Udemy OA system, REACT ADMIN, React Travel
+
+
+
+1.2 UI, CSS, JS ,DATA
+
+
+
+2.Login and page(UI)
+
+2.1 background color
+
+2.2 login section
+
+2.3 form:
+
+input: user nama(icon, field), password(icon, field)
+
+two buttons:Login and reset
+
+2.4 logo build
+
+2.5 When you click the login button, it will trigger the login section and go to the home view section, or shows the erros
+
+2.6 When you click the reset button it will reset the field value
+
+
+
+## Process
+
+
+
+
+
 
 
 Vue Start:
@@ -8,7 +50,7 @@ Start the environment:(mixiu fourm project) mvn export download the single proje
 
 0.Git ignore file add
 
-0.1 structure use the typescript project structure
+0.1 structure use the typescript project structure(mixiu fourm)
 
 1.page build, router build(App.js is responsible for the router)
 
@@ -65,13 +107,13 @@ npm i less-loader@5.0.0 less
 
 
 
-1.2 Data Fetch and Update(FireBase Project)
+1.2 Data Fetch and Update(Axios Project)
 
 2.Login and Register, Logout
 
 3.Private Route
 
-4.Reduex, React Reduex, Reduex tool kit
+4.Vuext
 
 1.Goal
 
