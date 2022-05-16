@@ -19,6 +19,7 @@
         <!-- username -->
         <el-form-item prop="pass">
           <el-input
+            prefix-icon="el-icon-user-solid"
             type="password"
             v-model="ruleForm.pass"
             autocomplete="off"
@@ -27,6 +28,7 @@
         <!-- password -->
         <el-form-item prop="checkPass">
           <el-input
+            prefix-icon="el-icon-lock"
             type="password"
             v-model="ruleForm.checkPass"
             autocomplete="off"

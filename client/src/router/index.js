@@ -6,12 +6,12 @@ import Login from "../views/Login.vue";
 Vue.use(VueRouter);
 
 const routes = [
+    // {
+    //   path: "/home",
+    //   redirect: "/",
+    // },
     {
       path: "/home",
-      redirect: "/",
-    },
-    {
-      path: "/Home",
       name: "home",
       component: Home,
     },

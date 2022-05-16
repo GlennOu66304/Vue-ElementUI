@@ -4,13 +4,19 @@
 
 1.Vue Side Bar render
 
-1.1.Logic:
+1.1.Logic:(Base OA)
 
 similiar like the Ant design:
 
+define the json data of the toggle title and path, then render it in the el sumenu(element UI component)
+
 1. jing Ge, Udemy OA system, REACT ADMIN, React Travel
 
+1.header
 
+2.side bar
+
+3.right side content
 
 1.2 UI, CSS, JS ,DATA
 
@@ -38,7 +44,13 @@ two buttons:Login and reset
 
 ## Process
 
+initial value: 
 
+1.model
+
+2.props
+
+3.other
 
 
 
