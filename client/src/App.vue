@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <!-- title  -->
-    <!-- sub titile css -->
-    <h1 class="subtitle has-text-centered">Bucket List:</h1>
-    </div> 
+
+      <router-view />
+  
+  </div>
 </template>
 
 <script>
@@ -20,8 +20,6 @@ export default {
       selected: {},
     };
   },
-
-  
 
   // methods
   methods: {
