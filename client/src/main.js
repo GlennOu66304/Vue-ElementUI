@@ -11,7 +11,7 @@ import {
   Aside,
   Menu,
   Submenu,
-  MenuItemGroup,
+ 
   MenuItem,
   Main,
   Header,
@@ -31,7 +31,7 @@ Vue.use(Container);
 Vue.use(Aside);
 Vue.use(Menu);
 Vue.use(Submenu);
-Vue.use(MenuItemGroup);
+
 Vue.use(MenuItem);
 Vue.use(Main);
 Vue.use(Header);

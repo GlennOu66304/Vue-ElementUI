@@ -2,6 +2,26 @@
 
 ## Goal
 
+1.parent icon need to be unique
+
+2.child icon use the tools icon
+
+## Process
+
+Define a obect data in the data section:
+
+id and icon
+
+this data will be rendered into the UI Icon section
+
+Dynamic get the icon from the data section
+
+
+
+
+
+## Goal
+
 1.Vue Side Bar render
 
 1.1.Logic:(Base OA)
