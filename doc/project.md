@@ -1,4 +1,16 @@
-## Back end build
+# Back end build
+
+
+
+## [connect ETIMEDOUT at PoolConnection.Connection._handleConnectTimeout](https://www.cnblogs.com/LiQingXin/p/14392206.html)
+
+```
+运行 node .\app.js时报错，显示数据库连接超时
+
+此时再运行一次node .\app.js即可
+```
+
+[connect ETIMEDOUT at PoolConnection.Connection._handleConnectTimeout](https://www.cnblogs.com/LiQingXin/p/14392206.html)
 
 0.run the back end first
 
