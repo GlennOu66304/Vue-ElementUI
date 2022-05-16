@@ -2,3 +2,11 @@
 [2021-05-25T14:53:42.688] [DEBUG] cheese - admin
 [2021-05-25T14:53:42.703] [DEBUG] cheese - null
 [2021-05-25T14:53:42.703] [DEBUG] cheese - null
+[2022-05-16T19:09:58.278] [DEBUG] cheese - login => username:admin,password:admin
+[2022-05-16T19:09:58.346] [DEBUG] cheese - admin
+[2022-05-16T19:09:58.508] [DEBUG] cheese - null
+[2022-05-16T19:09:58.510] [DEBUG] cheese - null
+[2022-05-16T19:10:08.642] [DEBUG] cheese - login => username:admin,password:123456
+[2022-05-16T19:10:08.642] [DEBUG] cheese - admin
+[2022-05-16T19:10:08.650] [DEBUG] cheese - null
+[2022-05-16T19:10:08.651] [DEBUG] cheese - null

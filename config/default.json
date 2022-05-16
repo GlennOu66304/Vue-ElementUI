@@ -11,10 +11,10 @@
 	},
 	"db_config" : {
 		"protocol" : "mysql",
-		"host" : "127.0.0.1",
-		"database" : "mydb",
+		"host" : "localhost",
+		"database" : "vue_admin",
 		"user" : "root",
-		"password" : "root",
+		"password" : "12345678",
 		"port" : 3306
 	}
 }

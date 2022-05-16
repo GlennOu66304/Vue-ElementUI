@@ -6,8 +6,10 @@ var path = require('path')
 var mount = require('mount-routes')
 
 var app = express()
-
-
+// test the node-php-password
+// var Password = require("node-php-password");
+// const Password2 = Password.hash("123456")
+// console.log(Password2)
 /**
  *
  * 公共系统初始化
