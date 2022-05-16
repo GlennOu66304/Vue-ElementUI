@@ -12,6 +12,59 @@ Start the environment:(mixiu fourm project) mvn export download the single proje
 
 1.page build, router build(App.js is responsible for the router)
 
+## Vue2 use the Element UI
+
+1.install the package
+
+```
+npm i element-ui -S
+```
+
+
+
+2. 2.configure the component import
+
+3. ```
+   npm i @babel/preset-env -D
+   
+   Add the code snipate to the babel.config.js
+   module.exports = {
+     presets: [
+       '@vue/cli-plugin-babel/preset',
+       ["@babel/preset-env", { "modules": false }]
+     ],
+     "plugins": [
+       [
+         "component",
+         {
+           "libraryName": "element-ui",
+           "styleLibraryName": "theme-chalk"
+         }
+       ]
+     ]
+   }
+   
+   
+   ```
+
+4. [element-ui按需引入报错 Error: Cannot find module ‘babel-preset-es2015‘](https://blog.csdn.net/zy21131437/article/details/108029284)
+
+[Vue2 use the Element UI](https://www.cnblogs.com/jshare/p/7403339.html)
+
+[vue2.0项目中使用element-ui步骤](https://www.jianshu.com/p/864920ff12d4)
+
+
+
+## Less and less loader
+
+```
+npm i less-loader@5.0.0 less
+```
+
+[dependece:](https://github.com/GlennOu66304/Full-Stack-Development/blob/master/Project%20%20%20building/React+antd%E6%90%AD%E5%BB%BA%E5%90%8E%E5%8F%B0%E5%89%8D%E7%AB%AF%E8%84%9A%E6%89%8B%E6%9E%B6.md)
+
+
+
 1.2 Data Fetch and Update(FireBase Project)
 
 2.Login and Register, Logout
