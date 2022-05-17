@@ -101,12 +101,16 @@ export default {
         // login failed
 
         if (res.meta.status !== 200) {
-          console.log("login failed");
+          // console.log("login failed");
+          this.$message.error("登录失败");
           return;
         }
         // login success
         // console.log("login success");
-
+        this.$message({
+          message: "登录成功",
+          type: "success",
+        });
         // save the token into the session
         window.sessionStorage.setItem("token", res.data.token);
         // router push to the /home section

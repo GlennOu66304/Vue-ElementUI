@@ -1,7 +1,16 @@
 <template>
-  <div>
-    <!-- Left sider bar, Header , main -->
-    <el-container style="height: 500px; border: 1px solid #eee">
+  <!-- total continer -->
+  <el-container style="height: 500px; border: 1px solid #eee">
+    <!-- header row -->
+    <el-header
+      style="text-align: right; font-size: 12px; background-color:#373d3f;"
+    >
+      <el-button type="info" @click="logout">退出</el-button>
+    </el-header>
+    <!-- Aside and Main contet in one row -->
+
+    <el-container>
+      <!-- left aside -->
       <el-aside width="200px">
         <!-- menu container -->
 
@@ -36,27 +45,13 @@
         </el-menu>
       </el-aside>
 
-      <!-- header and component menu content -->
-      <el-container>
-        <!-- header section -->
-        <el-header
-          style="text-align: right; font-size: 12px; background-color:#373d3f;"
-        >
-          <el-button type="info" @click="logout">退出</el-button>
-        </el-header>
-        <!-- main content -->
-        <el-main>
-          <el-table :data="tableData">
-            <el-table-column prop="date" label="日期" width="140">
-            </el-table-column>
-            <el-table-column prop="name" label="姓名" width="120">
-            </el-table-column>
-            <el-table-column prop="address" label="地址"> </el-table-column>
-          </el-table>
-        </el-main>
-      </el-container>
+      <!-- right side content -->
+
+      <el-main>
+        <router-view> </router-view>
+      </el-main>
     </el-container>
-  </div>
+  </el-container>
 </template>
 
 <script>
@@ -65,13 +60,7 @@ import menuList from "../config/menuConfig";
 export default {
   name: "Home",
   data() {
-    const item = {
-      date: "2016-05-02",
-      name: "王小虎",
-      address: "上海市普陀区金沙江路 1518 弄",
-    };
     return {
-      tableData: Array(20).fill(item),
       // fake data generate
       menuList: menuList,
       iconObej: {
@@ -107,7 +96,6 @@ export default {
 }
 
 .el-aside {
-
   background-color: #333744;
 }
 </style>

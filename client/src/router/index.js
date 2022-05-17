@@ -17,11 +17,7 @@ const routes = [
   //   path: "/home",
   //   redirect: "/",
   // },
-  {
-    path: "/home",
-    name: "home",
-    component: Home,
-  },
+
   {
     path: "/",
     name: "login",
@@ -33,46 +29,53 @@ const routes = [
     component: Login,
   },
   {
-    path: "/users",
-    name: "users",
-    component: Users,
-  },
-  {
-    path: "/roles",
-    name: "roles",
-    component: Roles,
-  },
-  {
-    path: "/rights",
-    name: "rights",
-    component: Rights,
-  },
-  {
-    path: "/goods",
-    name: "goods",
-    component: Goods,
-  },
-  {
-    path: "/params",
-    name: "params",
-    component: Params,
-  },
+    path: "/home",
+    name: "home",
+    component: Home,
+    children: [
+      {
+        path: "/users",
+        name: "users",
+        component: Users,
+      },
+      {
+        path: "/roles",
+        name: "roles",
+        component: Roles,
+      },
+      {
+        path: "/rights",
+        name: "rights",
+        component: Rights,
+      },
+      {
+        path: "/goods",
+        name: "goods",
+        component: Goods,
+      },
+      {
+        path: "/params",
+        name: "params",
+        component: Params,
+      },
 
-  {
-    path: "/categories",
-    name: "categories",
-    component: Categories,
-  },
+      {
+        path: "/categories",
+        name: "categories",
+        component: Categories,
+      },
 
-  {
-    path: "/orders",
-    name: "orders",
-    component: Orders,
-  },
-  {
-    path: "/reports",
-    name: "reports",
-    component: Reports,
+      {
+        path: "/orders",
+        name: "orders",
+        component: Orders,
+      },
+      {
+        path: "/reports",
+        name: "reports",
+        component: Reports,
+      },
+    ],
   },
 ];
 

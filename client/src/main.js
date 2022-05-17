@@ -22,6 +22,7 @@ import {
   DropdownItem,
   Table,
   TableColumn,
+  Message
 } from "element-ui";
 
 Vue.use(Form);
@@ -42,8 +43,9 @@ Vue.use(DropdownMenu);
 Vue.use(DropdownItem);
 Vue.use(Table);
 Vue.use(TableColumn);
-Vue.config.productionTip = false;
 
+Vue.config.productionTip = false;
+Vue.prototype.$message = Message
 new Vue({
   router,
   render: (h) => h(App),

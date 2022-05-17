@@ -26,6 +26,22 @@
 
 
 
+2.Second Way
+
+
+
+Children Component
+
+2.1.Take the Home Component As the Parent Componet
+
+2.2put the every children component into it as router
+
+2.3.So they can use the same parent Component
+
+2.4.Router View render the router content
+
+
+
 ## login and logout persist login, router page,pop up message
 
 1.login to the account, then redirect to the home page
