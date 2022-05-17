@@ -23,7 +23,7 @@
             <el-menu-item
               v-for="subItem in item.children"
               :key="subItem.id"
-              :index="subItem.id"
+              :index="subItem.id + ''"
               ><i class="el-icon-menu"></i
               ><span>{{ subItem.authName }}</span></el-menu-item
             >
@@ -76,7 +76,7 @@ export default {
       // fake data generate
       menuList: menuList,
       iconObej: {
-        "125": "el-icon-user",
+        "125": "el-icon-user-solid",
         "103": "el-icon-s-operation",
         "101": "el-icon-s-goods",
         "102": "el-icon-s-order",

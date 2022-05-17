@@ -10,37 +10,35 @@
       <!-- login form -->
 
       <el-form
-        :model="ruleForm"
-        :rules="rules"
-        ref="ruleForm"
+        :model="loginForm"
+        :rules="login_rules"
+        ref="loginFormRef"
         label-width="0px"
         class="login_form"
       >
         <!-- username -->
-        <el-form-item prop="pass">
+        <el-form-item prop="username">
+          <!-- v-model get the model object's value -->
           <el-input
             prefix-icon="el-icon-user-solid"
-            type="password"
-            v-model="ruleForm.pass"
+            v-model="loginForm.username"
             autocomplete="off"
           ></el-input>
         </el-form-item>
         <!-- password -->
-        <el-form-item prop="checkPass">
+        <el-form-item prop="password">
           <el-input
             prefix-icon="el-icon-lock"
             type="password"
-            v-model="ruleForm.checkPass"
+            v-model="loginForm.password"
             autocomplete="off"
           ></el-input>
         </el-form-item>
 
         <el-form-item class="btns">
           <!-- login and reset button -->
-          <el-button type="primary" @click="submitForm('ruleForm')"
-            >提交</el-button
-          >
-          <el-button type="info" @click="resetForm('ruleForm')">重置</el-button>
+          <el-button type="primary" @click="submitForm">提交</el-button>
+          <el-button type="info" @click="resetForm">重置</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -51,67 +49,73 @@
 export default {
   name: "Login",
   data() {
-    var checkAge = (rule, value, callback) => {
-      if (!value) {
-        return callback(new Error("年龄不能为空"));
-      }
-      setTimeout(() => {
-        if (!Number.isInteger(value)) {
-          callback(new Error("请输入数字值"));
-        } else {
-          if (value < 18) {
-            callback(new Error("必须年满18岁"));
-          } else {
-            callback();
-          }
-        }
-      }, 1000);
-    };
-    var validatePass = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请输入密码"));
-      } else {
-        if (this.ruleForm.checkPass !== "") {
-          this.$refs.ruleForm.validateField("checkPass");
-        }
-        callback();
-      }
-    };
-    var validatePass2 = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请再次输入密码"));
-      } else if (value !== this.ruleForm.pass) {
-        callback(new Error("两次输入密码不一致!"));
-      } else {
-        callback();
-      }
-    };
     return {
-      ruleForm: {
-        pass: "",
-        checkPass: "",
-        age: "",
+      login_rules: {
+        username: [
+          // rules not filled the content
+          { required: true, message: "用户名必填", trigger: "blur" },
+          // rule filled the content
+          {
+            min: 3,
+            max: 6,
+            message: "用户名长度要在3到6个字符",
+            trigger: "blur",
+          },
+        ],
+        password: [
+          // rules not filled the content
+          { required: true, message: "用户密码必填", trigger: "blur" },
+          // rule filled the content
+          {
+            min: 3,
+            max: 6,
+            message: "用户密码长度要在3到6个字符",
+            trigger: "blur",
+          },
+        ],
       },
-      rules: {
-        pass: [{ validator: validatePass, trigger: "blur" }],
-        checkPass: [{ validator: validatePass2, trigger: "blur" }],
-        age: [{ validator: checkAge, trigger: "blur" }],
+      loginForm: {
+        username: "",
+        password: "",
       },
     };
   },
   methods: {
-    submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          alert("submit!");
-        } else {
-          console.log("error submit!!");
+    submitForm() {
+      this.$refs.loginFormRef.validate(async (valid) => {
+        // test the submited value
+        // const result = this.loginForm;
+        // console.log(result);
+        if (!valid) {
           return false;
         }
+
+        // desctructure content
+        const { data: res } = await this.$axios.post(
+          "/api/login",
+          this.loginForm
+        );
+
+        // console.log(res);
+
+        // login failed
+
+        if (res.meta.status !== 200) {
+          console.log("login failed");
+          return;
+        }
+        // login success
+        // console.log("login success");
+
+        // save the token into the session
+        window.sessionStorage.setItem("token", res.data.token);
+        // router push to the /home section
+        this.$router.push("/home");
       });
     },
-    resetForm(formName) {
-      this.$refs[formName].resetFields();
+
+    resetForm() {
+      this.$refs.loginFormRef.resetFields();
     },
   },
 };

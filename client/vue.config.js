@@ -5,7 +5,12 @@ module.exports = {
     devServer: {
       proxy: {
         "/api": {
-          target: "http://localhost:3000",
+          target: "https://lianghj.top:8888/api/private/v1",
+          ws: true,
+          changrigin: true,
+          pathRewrite: {
+            "^/api": "",
+          },
         },
       },
     },

@@ -1,6 +1,33 @@
 **Vue CRM ElementUI Project （Baidu Method Failed, You need to try the bilibili method) **
 
+
+
+
+
 ## Goal
+
+1.login to the account, then redirect to the home page
+
+2.save the token into the session 
+
+3.router guard to process visit the home pgae
+
+4.home page router render
+
+5.login height css fix (CSS value fix)
+
+6.pop up message inform the user login success
+
+## Process
+
+1. 1.redirect to the home page
+2. 1.1 axios use global
+3. 1.2 When you submit the form data, this one will be used in the 
+4. method, axios call the api
+5. Save the token into the session
+6. 1.3 Vuex manage the user information(Mixiu form, typescript,)
+
+## Dynamic render the icon
 
 1.parent icon need to be unique
 
@@ -20,7 +47,7 @@ Dynamic get the icon from the data section
 
 
 
-## Goal
+## Login page and side bar build
 
 1.Vue Side Bar render
 
