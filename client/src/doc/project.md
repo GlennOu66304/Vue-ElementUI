@@ -2,9 +2,31 @@
 
 
 
-
-
 ## Goal
+
+1.Router Page component
+
+2. 2. 2. 2.Main content Sticky
+      3. 3.navigation fix 
+      4. 
+
+## Process
+
+1.Router Page Component
+
+1.1 every router write a view component
+
+1.2 header (Component)
+
+1.2 aside (Component)
+
+1.3 main conten(Component)
+
+1.4 User page: build the router in the router.js also the component
+
+
+
+## login and logout persist login, router page,pop up message
 
 1.login to the account, then redirect to the home page
 

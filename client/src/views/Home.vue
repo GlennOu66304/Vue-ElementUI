@@ -2,10 +2,15 @@
   <div>
     <!-- Left sider bar, Header , main -->
     <el-container style="height: 500px; border: 1px solid #eee">
-      <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
+      <el-aside width="200px">
         <!-- menu container -->
 
-        <el-menu>
+        <el-menu
+          router
+          background-color="#333744"
+          text-color="#fff"
+          active-text-color="#409EFF"
+        >
           <!-- group 1 -->
           <el-submenu
             v-for="item in menuList"
@@ -23,7 +28,7 @@
             <el-menu-item
               v-for="subItem in item.children"
               :key="subItem.id"
-              :index="subItem.id + ''"
+              :index="'/' + subItem.path"
               ><i class="el-icon-menu"></i
               ><span>{{ subItem.authName }}</span></el-menu-item
             >
@@ -34,7 +39,9 @@
       <!-- header and component menu content -->
       <el-container>
         <!-- header section -->
-        <el-header style="text-align: right; font-size: 12px">
+        <el-header
+          style="text-align: right; font-size: 12px; background-color:#373d3f;"
+        >
           <el-button type="info" @click="logout">退出</el-button>
         </el-header>
         <!-- main content -->
@@ -100,6 +107,7 @@ export default {
 }
 
 .el-aside {
-  color: #333;
+
+  background-color: #333744;
 }
 </style>
