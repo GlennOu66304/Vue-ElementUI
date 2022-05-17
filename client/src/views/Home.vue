@@ -1,17 +1,18 @@
 <template>
   <!-- total continer -->
-  <el-container style="height: 500px; border: 1px solid #eee">
-    <!-- header row -->
+  <el-container style="height: 100%; border: 1px solid #eee">
+    <!-- 1.header row -->
     <el-header
       style="text-align: right; font-size: 12px; background-color:#373d3f;"
     >
       <el-button type="info" @click="logout">退出</el-button>
     </el-header>
-    <!-- Aside and Main contet in one row -->
+
+    <!-- 2.Aside and Main contet in one row -->
 
     <el-container>
       <!-- left aside -->
-      <el-aside width="200px">
+      <el-aside width="200px" height="700px" >
         <!-- menu container -->
 
         <el-menu
@@ -43,11 +44,12 @@
             >
           </el-submenu>
         </el-menu>
+
       </el-aside>
 
       <!-- right side content -->
 
-      <el-main>
+      <el-main height="100%">
         <router-view> </router-view>
       </el-main>
     </el-container>
@@ -64,6 +66,7 @@ export default {
       // fake data generate
       menuList: menuList,
       iconObej: {
+        "666": "el-icon-info",
         "125": "el-icon-user-solid",
         "103": "el-icon-s-operation",
         "101": "el-icon-s-goods",
@@ -97,5 +100,10 @@ export default {
 
 .el-aside {
   background-color: #333744;
+  bottom:0;
+
+}
+.el-main{
+  background-color: #eaedf1;
 }
 </style>

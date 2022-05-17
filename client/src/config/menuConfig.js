@@ -1,5 +1,20 @@
 const menuList = [
     {
+        "id": 666,
+        "authName": "欢迎光临",
+        "path": "welcome",
+        "children": [
+            {
+                "id": 667,
+                "authName": "Welcome",
+                "path": "welcome",
+                "children": [],
+                "order": null
+            }
+        ],
+        "order": 1
+    },
+    {
         "id": 125,
         "authName": "用户管理",
         "path": "users",

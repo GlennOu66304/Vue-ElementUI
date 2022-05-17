@@ -2,6 +2,7 @@ import VueRouter from "vue-router";
 import Vue from "vue";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
+import Welcome from "../views/Welcome.vue";
 import Users from "../views/Users.vue";
 import Roles from "../views/Roles.vue";
 import Goods from "../views/Goods.vue";
@@ -33,6 +34,11 @@ const routes = [
     name: "home",
     component: Home,
     children: [
+      {
+        path: "/welcome",
+        name: "welcome",
+        component: Welcome,
+      },
       {
         path: "/users",
         name: "users",
