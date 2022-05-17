@@ -35,15 +35,7 @@
       <el-container>
         <!-- header section -->
         <el-header style="text-align: right; font-size: 12px">
-          <el-dropdown>
-            <i class="el-icon-setting" style="margin-right: 15px"></i>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>查看</el-dropdown-item>
-              <el-dropdown-item>新增</el-dropdown-item>
-              <el-dropdown-item>删除</el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
-          <span>王小虎</span>
+          <el-button type="info" @click="logout">退出</el-button>
         </el-header>
         <!-- main content -->
         <el-main>
@@ -87,6 +79,15 @@ export default {
 
   created() {
     console.log(menuList);
+  },
+
+  methods: {
+    logout() {
+      // save the token into the session
+      window.sessionStorage.clear();
+      // router push to the /home section
+      this.$router.push("/");
+    },
   },
 };
 </script>
