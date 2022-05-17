@@ -5,6 +5,15 @@
     <el-header
       style="text-align: right; font-size: 12px; background-color:#373d3f;"
     >
+      <!-- left side -->
+
+      <div class="left">
+        <!-- icon -->
+        <img src="../assets/logo.png" alt="" />
+        <!-- text -->
+        <span>电商管理后台</span>
+      </div>
+      <!-- right side -->
       <el-button type="info" @click="logout">退出</el-button>
     </el-header>
 
@@ -12,7 +21,7 @@
 
     <el-container>
       <!-- left aside -->
-      <el-aside width="200px" height="700px" >
+      <el-aside width="200px" height="700px">
         <!-- menu container -->
 
         <el-menu
@@ -44,7 +53,6 @@
             >
           </el-submenu>
         </el-menu>
-
       </el-aside>
 
       <!-- right side content -->
@@ -91,19 +99,38 @@ export default {
 };
 </script>
 
-<style>
+<style lang="less" scoped>
 .el-header {
   background-color: #b3c0d1;
   color: #333;
   line-height: 60px;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 0px;
+  align-items: center;
+  color: white;
+  
+  /* vertical-align: middle; */
+  > div {
+    display: flex;
+    img {
+      width: 40px;
+      height: 40px;
+      padding-top:12px;
+      padding-left:12px;
+    }
+    span {
+      margin-left: 1px;
+      font-size: 20px;
+    }
+  }
 }
 
 .el-aside {
   background-color: #333744;
-  bottom:0;
-
+  bottom: 0;
 }
-.el-main{
+.el-main {
   background-color: #eaedf1;
 }
 </style>
