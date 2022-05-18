@@ -24,15 +24,123 @@
           </el-option>
         </el-select>
       </el-row>
-
+      <!-- tab shift section -->
       <el-row>
         <el-tabs v-model="activeName" @tab-click="handleClick">
-          <el-tab-pane label="动态参数" name="first"
-            ><el-button type="primary"> 添加参数 </el-button></el-tab-pane
-          >
-          <el-tab-pane label="静态属性" name="second"
-            ><el-button type="primary"> 添加属性</el-button></el-tab-pane
-          >
+          <!-- tbapane1 -->
+          <el-tab-pane label="动态参数" name="first">
+            <!-- button -->
+            <el-button size="small" round type="primary"> 添加参数 </el-button>
+
+            <!-- table data -->
+
+            <el-table :data="tableData" border>
+              <!-- 2.2 data row -->
+              <!-- 2.1 column name first row -->
+              <!-- index column -->
+              <el-table-column
+                label="列表"
+                width="140"
+                align="center"
+                type="index"
+                fixed
+              >
+              </el-table-column>
+              <el-table-column
+                prop="name"
+                label="姓名"
+                width="140"
+                align="center"
+              >
+              </el-table-column>
+
+              <!-- 2.3 data edit, delete, assign the perssion :Modal Pop up-->
+              <el-table-column
+                prop="address"
+                label="操作"
+                align="center"
+                fixed="right"
+              >
+                <el-button
+                  size="mini"
+                  type="primary"
+                  @click="handleEdit(scope.$index, scope.row)"
+                  ><i class="el-icon-edit"></i
+                ></el-button>
+                <el-button
+                  size="mini"
+                  type="danger"
+                  @click="handleDelete(scope.$index, scope.row)"
+                  ><i class="el-icon-delete"></i
+                ></el-button>
+
+                <el-button
+                  size="mini"
+                  type="warning"
+                  @click="handleDelete(scope.$index, scope.row)"
+                >
+                  <i class="el-icon-setting"></i
+                ></el-button>
+              </el-table-column>
+            </el-table>
+          </el-tab-pane>
+
+          <!-- tabpane2 -->
+          <el-tab-pane label="静态属性" name="second">
+
+            <el-button size="small" round type="primary"> 添加属性</el-button>
+            <!-- table data -->
+
+            <el-table :data="tableData" border>
+              <!-- 2.2 data row -->
+              <!-- 2.1 column name first row -->
+              <!-- index column -->
+              <el-table-column
+                label="列表"
+                width="140"
+                align="center"
+                type="index"
+                fixed
+              >
+              </el-table-column>
+              <el-table-column
+                prop="name"
+                label="姓名"
+                width="140"
+                align="center"
+              >
+              </el-table-column>
+
+              <!-- 2.3 data edit, delete, assign the perssion :Modal Pop up-->
+              <el-table-column
+                prop="address"
+                label="操作"
+                align="center"
+                fixed="right"
+              >
+                <el-button
+                  size="mini"
+                  type="primary"
+                  @click="handleEdit(scope.$index, scope.row)"
+                  ><i class="el-icon-edit"></i
+                ></el-button>
+                <el-button
+                  size="mini"
+                  type="danger"
+                  @click="handleDelete(scope.$index, scope.row)"
+                  ><i class="el-icon-delete"></i
+                ></el-button>
+
+                <el-button
+                  size="mini"
+                  type="warning"
+                  @click="handleDelete(scope.$index, scope.row)"
+                >
+                  <i class="el-icon-setting"></i
+                ></el-button>
+              </el-table-column>
+            </el-table>
+          </el-tab-pane>
         </el-tabs>
       </el-row>
     </el-card>
@@ -52,7 +160,7 @@ export default {
     };
     return {
       tableData: Array(20).fill(item),
-
+      activeName: 'second',
       options: [
         {
           value: "选项1",
@@ -102,6 +210,9 @@ export default {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) !important;
 }
 .el-row {
+  margin-bottom: 20px;
+}
+.el-button{
   margin-bottom: 20px;
 }
 </style>
