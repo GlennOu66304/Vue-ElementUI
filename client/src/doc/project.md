@@ -1,6 +1,35 @@
 **Vue CRM ElementUI Project （Baidu Method Failed, You need to try the bilibili method) **
 
-## Goal
+
+
+## toggle bar, close the item section, load the data
+
+1.close the section, when other section is open
+
+2. 2.Have  a button to close the aside bar
+3. 3.data load, change the fake data to the api data
+
+##  Process
+
+1.Toggle side bar
+
+1.1UI Write
+
+1.2 Copllase attrbute,change: a  click function, a 
+
+1.3 dynamic change the width value: condition change
+
+1.4 closse the close animation close
+
+
+
+2.Toggle side bar item section
+
+3.Data load axios
+
+
+
+## Report Data Section
 
 The report section can show the data map
 

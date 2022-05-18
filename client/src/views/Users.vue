@@ -36,7 +36,7 @@
       <el-row>
         <!-- 2.data display -->
         <!-- S:When the page come in, then load the data from  -->
-        <el-table :data="tableData" border>
+        <el-table :data="userList" border>
           <!-- 2.2 data row -->
           <!-- 2.1 column name first row -->
           <!-- index column -->
@@ -48,17 +48,17 @@
             fixed
           >
           </el-table-column>
-          <el-table-column prop="name" label="姓名" width="140" align="center">
+          <el-table-column prop="username" label="姓名" width="140" align="center">
           </el-table-column>
           <el-table-column prop="email" label="邮箱" width="120" align="center">
           </el-table-column>
-          <el-table-column prop="phone" label="电话" align="center">
+          <el-table-column prop="mobile" label="电话" align="center">
           </el-table-column>
-          <el-table-column prop="roles" label="角色" width="120" align="center">
+          <el-table-column prop="role_name" label="角色" width="120" align="center">
           </el-table-column>
           <!-- data switch status -->
           <el-table-column
-            prop="status"
+            prop="mg_state"
             label="状态"
             width="120"
             align="center"
@@ -122,26 +122,41 @@
 export default {
   name: "Users",
   data() {
-    const item = {
-      date: "2016-05-02",
-      name: "王小虎",
-      phone: "15647823020",
-      email: "test@qq.com",
-      roles: "admin",
-    };
     return {
-      tableData: Array(20).fill(item),
+      queryInfo: {
+        query: "",
+        pagenum: 1,
+        pagesize: 4,
+      },
+      userList: [],
       value: true,
+      currentPage4: 4,
+      total: "",
+      pagenum: "",
     };
   },
-  created: {
+  created() {
     // load the table data first
+    this.loadData();
   },
 
   methods: {
-    //  indexMethod(index) {
-    //     return index * 2;
-    //   }
+    // Load the data
+
+    async loadData() {
+      await this.$axios
+        .get("/api/users", { params: this.queryInfo })
+        .then((res) => {
+          console.log(res.data);
+          this.userList = res.data.data.users;
+        });
+    },
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+    },
   },
   components: {},
 };

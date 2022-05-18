@@ -126,16 +126,23 @@ export default {
     return {
       tableData: Array(20).fill(item),
       value: true,
+      currentPage4: 4,
     };
   },
-  created: {
-    // load the table data first
-  },
+  // created: {
+  //   // load the table data first
+  // },
 
   methods: {
     //  indexMethod(index) {
     //     return index * 2;
     //   }
+     handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+    },
   },
   components: {},
 };

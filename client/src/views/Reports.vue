@@ -56,9 +56,9 @@ export default {
       value: "",
     };
   },
-  created: {
-    // load the table data first
-  },
+  // created: {
+  //   // load the table data first
+  // },
   mounted() {
     // initialize the echarts instance
     var myChart = echarts.init(document.getElementById("main"));

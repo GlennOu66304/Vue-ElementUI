@@ -2,7 +2,17 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router/index.js";
 import axios from "axios";
-Vue.prototype.$axios = axios
+Vue.prototype.$axios = axios;
+axios.interceptors.request.use(
+  (config) => {
+    config.headers.Authorization = window.sessionStorage.getItem("token");
+    // console.log(config);
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 import {
   Form,
   FormItem,
@@ -31,7 +41,7 @@ import {
   Switch,
   Option,
   Tabs,
-  TabPane
+  TabPane,
 } from "element-ui";
 
 Vue.use(Form);
@@ -63,7 +73,7 @@ Vue.use(Option);
 Vue.use(Tabs);
 Vue.use(TabPane);
 Vue.config.productionTip = false;
-Vue.prototype.$message = Message
+Vue.prototype.$message = Message;
 new Vue({
   router,
   render: (h) => h(App),

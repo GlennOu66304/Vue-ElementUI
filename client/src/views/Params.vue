@@ -186,9 +186,9 @@ export default {
       value: "",
     };
   },
-  created: {
-    // load the table data first
-  },
+  // created: {
+  //   // load the table data first
+  // },
 
   methods: {
     //  indexMethod(index) {

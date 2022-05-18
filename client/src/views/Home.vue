@@ -20,15 +20,24 @@
     <!-- 2.Aside and Main contet in one row -->
 
     <el-container>
-      <!-- left aside -->
-      <el-aside width="200px" height="700px">
-        <!-- menu container -->
+      <!-- toggle section -->
 
+      <el-aside :width="isCollapse ? '64px' : '200px'" height="700px">
+        <!-- menu container -->
+        <!-- toggle section
+        1.three vertical lines
+       
+        
+         -->
+        <div class="toggle" @click="toggleSideBar">|||</div>
         <el-menu
           router
           background-color="#333744"
           text-color="#fff"
           active-text-color="#409EFF"
+          :collapse="isCollapse"
+          :collapse-transition="false"
+          :unique-opened="true"
         >
           <!-- group 1 -->
           <el-submenu
@@ -37,20 +46,21 @@
             :index="item.id + ''"
           >
             <!--toggle title -->
-            <span slot="title">
+            <template slot="title">
               <!-- dynamic get the data -->
               <i :class="iconObej[item.id]"></i>
 
-              {{ item.authName }}</span
-            >
+              <span slot="title">{{ item.authName }}</span>
+            </template>
 
             <el-menu-item
               v-for="subItem in item.children"
               :key="subItem.id"
               :index="'/' + subItem.path"
-              ><i class="el-icon-menu"></i
-              ><span>{{ subItem.authName }}</span></el-menu-item
             >
+              <i class="el-icon-menu"></i>
+              <span>{{ subItem.authName }}</span>
+            </el-menu-item>
           </el-submenu>
         </el-menu>
       </el-aside>
@@ -81,18 +91,21 @@ export default {
         "102": "el-icon-s-order",
         "145": "el-icon-s-data",
       },
+      isCollapse: false,
     };
   },
 
   created() {
-    console.log(menuList);
+    // console.log(menuList);
   },
 
   methods: {
+    toggleSideBar() {
+      this.isCollapse = !this.isCollapse;
+      // console.log(this.isCollapse)
+    },
     logout() {
-      // save the token into the session
       window.sessionStorage.clear();
-      // router push to the /home section
       this.$router.push("/");
     },
   },
@@ -109,15 +122,15 @@ export default {
   padding-left: 0px;
   align-items: center;
   color: white;
-  
+
   /* vertical-align: middle; */
   > div {
     display: flex;
     img {
       width: 40px;
       height: 40px;
-      padding-top:12px;
-      padding-left:12px;
+      padding-top: 12px;
+      padding-left: 12px;
     }
     span {
       margin-left: 1px;
@@ -132,5 +145,16 @@ export default {
 }
 .el-main {
   background-color: #eaedf1;
+}
+
+// color is white,font size is 10px, in the middle, background -color, top and middle
+.toggle {
+  font-size: 10px;
+  background-color: #4a5064;
+  text-align: center;
+  line-height: 24px;
+  color: #fff;
+  letter-spacing: 0.2em;
+  cursor: pointer;
 }
 </style>
