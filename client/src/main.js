@@ -13,7 +13,6 @@ import {
   Aside,
   Menu,
   Submenu,
- 
   MenuItem,
   Main,
   Header,
@@ -22,7 +21,17 @@ import {
   DropdownItem,
   Table,
   TableColumn,
-  Message
+  Message,
+  Breadcrumb,
+  BreadcrumbItem,
+  Card,
+  Col,
+  Row,
+  Pagination,
+  Switch,
+  Option,
+  Tabs,
+  TabPane
 } from "element-ui";
 
 Vue.use(Form);
@@ -43,7 +52,16 @@ Vue.use(DropdownMenu);
 Vue.use(DropdownItem);
 Vue.use(Table);
 Vue.use(TableColumn);
-
+Vue.use(Breadcrumb);
+Vue.use(Card);
+Vue.use(BreadcrumbItem);
+Vue.use(Col);
+Vue.use(Row);
+Vue.use(Pagination);
+Vue.use(Switch);
+Vue.use(Option);
+Vue.use(Tabs);
+Vue.use(TabPane);
 Vue.config.productionTip = false;
 Vue.prototype.$message = Message
 new Vue({

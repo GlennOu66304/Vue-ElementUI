@@ -1,48 +1,34 @@
 **Vue CRM ElementUI Project （Baidu Method Failed, You need to try the bilibili method) **
 
-
-
 ## Goal
 
-1.Router Page component
+The report section can show the data map
 
-2. 2. 2. 2.Main content Sticky
-      3. 3.navigation fix 
-      4. 
+
 
 ## Process
 
-1.Router Page Component
+1.install the E chars package
 
-1.1 every router write a view component
+2.Then render the data in the page
 
-1.2 header (Component)
+## Router Page UI 
 
-1.2 aside (Component)
-
-1.3 main conten(Component)
-
-1.4 User page: build the router in the router.js also the component
+Build a data table component, so the every view component can use it
 
 
 
-2.Second Way
+## Process
 
+1.The parent Component will send the data props to the child component
 
+2.The Parent Component has the State Component, and UI Component(index), a folder
 
-Children Component
+3.Put the Function things(Action) into the vuex
 
-2.1.Take the Home Component As the Parent Componet
+## 
 
-2.2put the every children component into it as router
-
-2.3.So they can use the same parent Component
-
-2.4.Router View render the router content
-
-
-
-## login and logout persist login, router page,pop up message
+## ## Login, token session save, router path render, message
 
 1.login to the account, then redirect to the home page
 
