@@ -1,6 +1,16 @@
 **Vue CRM ElementUI Project （Baidu Method Failed, You need to try the bilibili method) **
 
+## Commit push to the branch
 
+git branch
+
+git check out -b branch
+
+git push -u origin main(branch name)
+
+// every commit 
+
+git push
 
 ## toggle bar, close the item section, load the data
 
