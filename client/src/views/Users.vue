@@ -178,9 +178,9 @@
               <span>当前的角色：{{ roleInfo.role_name }}</span>
             </el-row>
             <!-- select Box -->
-            <el-select v-model="value" placeholder="请选择">
+            <el-select v-model="selectedRoleValue" placeholder="请选择">
               <el-option
-                v-for="item in options"
+                v-for="item in roleList"
                 :key="item.value"
                 :label="item.label"
                 :value="item.value"
@@ -365,31 +365,23 @@ export default {
           // rule filled the content
         ],
       },
-      options: [
+      roleList: [
         {
-          value: "选项1",
-          label: "黄金糕",
+          value: 34,
+          label: "测试角色2",
         },
         {
-          value: "选项2",
-          label: "双皮奶",
+          value: 40,
+          label: "test",
         },
         {
-          value: "选项3",
-          label: "蚵仔煎",
-        },
-        {
-          value: "选项4",
-          label: "龙须面",
-        },
-        {
-          value: "选项5",
-          label: "北京烤鸭",
+          value: 41,
+          label: "dsd",
         },
       ],
       roleInfo: {},
 
-      value: "",
+      selectedRoleValue: "",
     };
   },
   created() {
@@ -535,8 +527,32 @@ export default {
       // console.log(res);
       // this.roleInfo = res.data.data;
     },
-    editRoleSubmit() {
+
+    async editRoleSubmit() {
+      // get the from the user info
+      // get the role by select option select change event
+      // is the selectRole is empty, then pop up errro
+      // else then send the api request to the server
+      if (!this.selectedRoleValue) {
+        this.$message.error("请选择对象类型");
+      }
+      // console.log(this.selectedRoleValue);
+      const res = await this.$axios.put(`/api/users/${this.roleInfo.id}/role`, {
+        rid: this.selectedRoleValue,
+      });
+      if (res.data.meta.status != 200) {
+        // console.log("login failed");
+        this.$message.error("分配角色失败");
+        return;
+      }
+      // login success
+      // console.log("login success");
+      this.$message({
+        message: "分配角色成功",
+        type: "success",
+      });
       this.dialogEditRoleVisible = false;
+      this.loadData();
     },
   },
   components: {},
