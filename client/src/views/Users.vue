@@ -45,11 +45,11 @@
         <!-- S:1. Modal Compoenent use 2. call the api request-->
         <el-col :span="4">
           <!-- Form -->
-          <el-button type="primary" @click="dialogFormVisible = true"
+          <el-button type="primary" @click="dialogAddUserVisible = true"
             >添加用户</el-button
           >
-          <!-- dialog section -->
-          <el-dialog title="添加用户" :visible.sync="dialogFormVisible">
+          <!-- AddUser dialog section -->
+          <el-dialog title="添加用户" :visible.sync="dialogAddUserVisible">
             <el-form
               :model="addUser_form"
               :rules="addUser_rules"
@@ -108,6 +108,62 @@
             <div slot="footer" class="dialog-footer">
               <el-button @click="dialogFormVisible = false">取 消</el-button>
               <el-button type="primary" @click="addUserSubmit">确 定</el-button>
+            </div>
+          </el-dialog>
+
+          <!-- EditUser dialog section -->
+          <el-dialog title="编辑用户" :visible.sync="dialogEditUserVisible">
+            <el-form
+              :model="addUser_form"
+              :rules="addUser_rules"
+              ref="editUserFormRef"
+            >
+              <!-- username -->
+              <el-form-item
+                label="用户名"
+                :label-width="formLabelWidth"
+                prop="username"
+              >
+                <el-input
+                  v-model="addUser_form.username"
+                  autocomplete="off"
+                  disabled
+                ></el-input>
+              </el-form-item>
+
+              <!-- email -->
+              <el-form-item
+                label="邮箱"
+                :label-width="formLabelWidth"
+                prop="email"
+              >
+                <el-input
+                  v-model="addUser_form.email"
+                  type="email"
+                  autocomplete="off"
+                ></el-input>
+              </el-form-item>
+              <!-- mobile -->
+              <el-form-item
+                label="手机"
+                :label-width="formLabelWidth"
+                prop="mobile"
+              >
+                <el-input
+                  v-model="addUser_form.mobile"
+                  autocomplete="off"
+                ></el-input>
+              </el-form-item>
+            </el-form>
+
+            <!-- footer -->
+            <div slot="footer" class="dialog-footer">
+              <el-button @click="dialogEditUserVisible = false"
+                >取 消</el-button
+              >
+              <el-button type="primary" @click="editUserSubmit"
+                >确 定</el-button
+              >
             </div>
           </el-dialog>
         </el-col>
@@ -176,7 +232,7 @@
               <el-button
                 size="mini"
                 type="primary"
-                @click="handleEdit(scope.$index, scope.row)"
+                @click="getUserById(scope.row.id)"
                 ><i class="el-icon-edit"></i
               ></el-button>
 
@@ -232,7 +288,8 @@ export default {
       currentPage4: 4,
       total: "",
       pagenum: "",
-      dialogFormVisible: false, // for the user add
+      dialogAddUserVisible: false, // for the user add
+      dialogEditUserVisible: false, // for the user Edit
       clearable: true,
       addUser_form: {
         username: "",
@@ -347,7 +404,42 @@ export default {
         this.loadData();
       });
     },
+    async getUserById(id) {
+      this.dialogEditUserVisible = true;
+      const res = await this.$axios.get(`/api/users/${id}`);
+      // console.log(res.data.data);
+      this.addUser_form = res.data.data;
+    },
+    editUserSubmit() {
+      // then call the update data api
+      this.$refs.editUserFormRef.validate(async (valid) => {
+        if (!valid) return;
 
+        const res = await this.$axios.put(
+          `/api/users/${this.addUser_form.id}`,
+          this.addUser_form
+        );
+        // console.log(res.data.data);
+        this.addUser_form = res.data.data;
+       
+
+        // login failed
+
+        if (res.data.meta.status != 200) {
+          // console.log("login failed");
+          this.$message.error("更新用户失败");
+          return;
+        }
+        // login success
+        // console.log("login success");
+        this.$message({
+          message: "更新用户成功",
+          type: "success",
+        });
+        this.dialogEditUserVisible = false;
+        this.loadData();
+      });
+    },
     async deleteUserById(id) {
       await this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
         confirmButtonText: "确定",
