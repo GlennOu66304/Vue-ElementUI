@@ -50,6 +50,7 @@ export default {
   name: "Login",
   data() {
     return {
+      // rules
       login_rules: {
         username: [
           // rules not filled the content

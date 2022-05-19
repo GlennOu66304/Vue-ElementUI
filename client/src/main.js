@@ -32,6 +32,7 @@ import {
   Table,
   TableColumn,
   Message,
+  MessageBox,
   Breadcrumb,
   BreadcrumbItem,
   Card,
@@ -42,6 +43,8 @@ import {
   Option,
   Tabs,
   TabPane,
+  Dialog,
+  
 } from "element-ui";
 
 Vue.use(Form);
@@ -72,8 +75,11 @@ Vue.use(Switch);
 Vue.use(Option);
 Vue.use(Tabs);
 Vue.use(TabPane);
+Vue.use(Dialog);
+
 Vue.config.productionTip = false;
 Vue.prototype.$message = Message;
+Vue.prototype.$confirm = MessageBox.confirm;
 new Vue({
   router,
   render: (h) => h(App),

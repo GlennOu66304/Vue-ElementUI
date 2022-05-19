@@ -1,5 +1,39 @@
 **Vue CRM ElementUI Project （Baidu Method Failed, You need to try the bilibili method) **
 
+
+
+Search
+
+Delet the user
+
+1.Reset the search field
+
+2.load the data again(query info is zero)
+
+## Goal
+
+1.load the table data done
+
+2.key word to load the data done
+
+3.add the user done
+
+4.edit user
+
+5.delet the user done
+
+6.add the permisiion
+
+7.Pagination fix
+
+8.Status change done
+
+## Process
+
+
+
+
+
 ## Commit push to the branch
 
 git branch
