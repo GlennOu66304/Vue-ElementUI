@@ -166,6 +166,37 @@
               >
             </div>
           </el-dialog>
+
+          <!-- Assign a new roles -->
+          <el-dialog title="分配新角色" :visible.sync="dialogEditRoleVisible">
+            <!-- data area -->
+            <el-row>
+              <span>当前的用户：{{ roleInfo.username }}</span>
+            </el-row>
+
+            <el-row>
+              <span>当前的角色：{{ roleInfo.role_name }}</span>
+            </el-row>
+            <!-- select Box -->
+            <el-select v-model="value" placeholder="请选择">
+              <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
+            </el-select>
+            <!-- footer -->
+            <div slot="footer" class="dialog-footer">
+              <el-button @click="dialogEditRoleVisible = false"
+                >取 消</el-button
+              >
+              <el-button type="primary" @click="editRoleSubmit"
+                >确 定</el-button
+              >
+            </div>
+          </el-dialog>
         </el-col>
       </el-row>
 
@@ -248,7 +279,7 @@
               <el-button
                 size="mini"
                 type="warning"
-                @click="handleDelete(scope.$index, scope.row)"
+                @click="getRoleById(scope.row)"
               >
                 <i class="el-icon-setting"></i
               ></el-button>
@@ -290,12 +321,14 @@ export default {
       pagenum: "",
       dialogAddUserVisible: false, // for the user add
       dialogEditUserVisible: false, // for the user Edit
+      dialogEditRoleVisible: false, // for the user Edit
       clearable: true,
       addUser_form: {
         username: "",
         password: "",
         email: "",
         mobile: "",
+        role_name: "",
       },
       formLabelWidth: "120px",
       addUser_rules: {
@@ -332,6 +365,31 @@ export default {
           // rule filled the content
         ],
       },
+      options: [
+        {
+          value: "选项1",
+          label: "黄金糕",
+        },
+        {
+          value: "选项2",
+          label: "双皮奶",
+        },
+        {
+          value: "选项3",
+          label: "蚵仔煎",
+        },
+        {
+          value: "选项4",
+          label: "龙须面",
+        },
+        {
+          value: "选项5",
+          label: "北京烤鸭",
+        },
+      ],
+      roleInfo: {},
+
+      value: "",
     };
   },
   created() {
@@ -421,7 +479,6 @@ export default {
         );
         // console.log(res.data.data);
         this.addUser_form = res.data.data;
-       
 
         // login failed
 
@@ -469,6 +526,17 @@ export default {
             message: "已取消删除",
           });
         });
+    },
+    async getRoleById(roleInfo) {
+      this.dialogEditRoleVisible = true;
+      // console.log(roleInfo);
+      this.roleInfo = roleInfo;
+      // const res = await this.$axios.get(`/api/users/${id}`);
+      // console.log(res);
+      // this.roleInfo = res.data.data;
+    },
+    editRoleSubmit() {
+      this.dialogEditRoleVisible = false;
     },
   },
   components: {},
