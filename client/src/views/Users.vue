@@ -450,7 +450,8 @@ export default {
           message: "用户添加成功",
           type: "success",
         });
-        this.dialogFormVisible = false;
+        this.dialogAddUserVisible = false;
+        this.queryInfo.query = "";
         this.loadData();
       });
     },
@@ -486,6 +487,7 @@ export default {
           type: "success",
         });
         this.dialogEditUserVisible = false;
+        this.queryInfo.query = "";
         this.loadData();
       });
     },
@@ -552,6 +554,7 @@ export default {
         type: "success",
       });
       this.dialogEditRoleVisible = false;
+      this.queryInfo.query = "";
       this.loadData();
     },
   },
