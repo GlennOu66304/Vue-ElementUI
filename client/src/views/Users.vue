@@ -106,7 +106,7 @@
 
             <!-- footer -->
             <div slot="footer" class="dialog-footer">
-              <el-button @click="dialogFormVisible = false">取 消</el-button>
+              <el-button @click="dialogAddUserVisible = false">取 消</el-button>
               <el-button type="primary" @click="addUserSubmit">确 定</el-button>
             </div>
           </el-dialog>
@@ -318,7 +318,6 @@ export default {
       userList: [],
       currentPage: 1,
       totalUsers: 0,
-      pagenum: "",
       dialogAddUserVisible: false, // for the user add
       dialogEditUserVisible: false, // for the user Edit
       dialogEditRoleVisible: false, // for the user Edit
