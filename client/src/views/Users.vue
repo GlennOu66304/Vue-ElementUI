@@ -203,13 +203,13 @@
       <!-- 2.data display -->
       <el-row>
         <!-- S:When the page come in, then load the data from  -->
-        <el-table :data="userList" border>
+        <el-table :data="userList"  border stripe >
           <!-- 2.2 data row -->
           <!-- 2.1 column name first row -->
           <!-- index column -->
           <el-table-column
             label="列表"
-            width="140"
+          
             align="center"
             type="index"
             fixed
@@ -219,18 +219,18 @@
           <el-table-column
             prop="username"
             label="姓名"
-            width="140"
+           
             align="center"
           >
           </el-table-column>
-          <el-table-column prop="email" label="邮箱" width="120" align="center">
+          <el-table-column prop="email" label="邮箱"  align="center">
           </el-table-column>
           <el-table-column prop="mobile" label="电话" align="center">
           </el-table-column>
           <el-table-column
             prop="role_name"
             label="角色"
-            width="120"
+           
             align="center"
           >
           </el-table-column>
@@ -238,7 +238,7 @@
           <el-table-column
             prop="mg_state"
             label="状态"
-            width="120"
+          
             align="center"
           >
             <template slot-scope="scope">
@@ -257,6 +257,7 @@
             label="操作"
             align="center"
             fixed="right"
+           width="190"
           >
             <template slot-scope="scope">
               <!-- edit button -->
@@ -329,7 +330,7 @@ export default {
         mobile: "",
         role_name: "",
       },
-      formLabelWidth: "120px",
+ 
       addUser_rules: {
         username: [
           // rules not filled the content
@@ -579,7 +580,5 @@ export default {
 .el-row {
   margin-bottom: 20px;
 }
-.el-button {
-  margin-right: 10px;
-}
+
 </style>
