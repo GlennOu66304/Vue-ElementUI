@@ -64,7 +64,7 @@ export default {
 
   created() {
     // load the table data first
-    this.loadRightData();
+   this.loadRightData();
   },
   methods: {
     async loadRightData() {
@@ -75,6 +75,7 @@ export default {
         // console.log(this.rightList);
       });
     },
+  
   },
 };
 </script>

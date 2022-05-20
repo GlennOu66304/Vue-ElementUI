@@ -24,6 +24,22 @@
 
 
 
+tree current load
+
+1.set the default tree data is zero
+
+1.1 When you open the dialog to load the row rights data by calling he recursion function
+
+Node and arry
+
+2. 2.recursion to get the tree data
+3. 2.1.if the node's value has no children, then push the node value into the arr
+4. and return
+5. 2.2 else check this value again call the recustion
+6. 2.3 finall call again and stop the recursion
+
+
+
 
 
 Search

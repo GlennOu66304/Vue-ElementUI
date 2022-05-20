@@ -100,29 +100,57 @@
 
           <!-- 2.3 data edit, delete, assign the perssion :Modal Pop up-->
           <el-table-column label="操作" align="center" fixed="right">
-            <el-button
-              size="mini"
-              type="primary"
-              @click="handleEdit(scope.$index, scope.row)"
-              ><i class="el-icon-edit"></i
-            ></el-button>
-            <el-button
-              size="mini"
-              type="danger"
-              @click="handleDelete(scope.$index, scope.row)"
-              ><i class="el-icon-delete"></i
-            ></el-button>
+            <template slot-scope="scope">
+              <el-button
+                size="mini"
+                type="primary"
+                @click="handleEdit(scope.$index, scope.row)"
+                ><i class="el-icon-edit"></i
+              ></el-button>
+              <el-button
+                size="mini"
+                type="danger"
+                @click="handleDelete(scope.$index, scope.row)"
+                ><i class="el-icon-delete"></i
+              ></el-button>
 
-            <el-button
-              size="mini"
-              type="warning"
-              @click="handleDelete(scope.$index, scope.row)"
-            >
-              <i class="el-icon-setting"></i
-            ></el-button>
+              <el-button
+                size="mini"
+                type="warning"
+                @click="dialogAssignRoleOpen(scope.row)"
+              >
+                <i class="el-icon-setting">分配权限</i></el-button
+              >
+            </template>
           </el-table-column>
         </el-table>
       </el-row>
+
+      <!-- assign right dialog section -->
+      <el-dialog
+        title="分配权限"
+        :visible.sync="dialogAssignRoleVisible"
+        @close="setRightDialog"
+      >
+        <el-tree
+          :data="treeData"
+          show-checkbox
+          default-expand-all
+          :default-checked-keys="dfkeys"
+          node-key="id"
+          ref="tree"
+          highlight-current
+          :props="treeProps"
+        >
+        </el-tree>
+
+        <!-- footer -->
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="resetChecked">清空</el-button>
+          <el-button @click="dialogAssignRoleVisible = false">取 消</el-button>
+          <el-button type="primary" @click="assignRight">确 定</el-button>
+        </div>
+      </el-dialog>
     </el-card>
   </div>
 </template>
@@ -135,11 +163,21 @@ export default {
       value: true,
       rolestList: [],
       disabletransitions: true,
+      dialogAssignRoleVisible: false,
+      treeData: [],
+
+      treeProps: {
+        children: "children",
+        label: "authName",
+      },
+      dfkeys: [],
+      roleId: "",
     };
   },
   created() {
     // load the table data first
     this.loadRoletData();
+    this.loadRightTreeData();
   },
 
   methods: {
@@ -151,6 +189,7 @@ export default {
         // console.log(this.rightList);
       });
     },
+
     async removeLevel3ById(role, rightId) {
       // console.log(role)
       await this.$confirm("此操作将永久删除该标签, 是否继续?", "提示", {
@@ -181,6 +220,79 @@ export default {
             message: "已取消删除",
           });
         });
+    },
+
+    async assignRight() {
+      // IT is an array
+      const keys = [
+        ...this.$refs.tree.getCheckedKeys(),
+        ...this.$refs.tree.getHalfCheckedKeys(),
+      ];
+
+      const rightId = keys.join(",");
+      console.log(rightId);
+      await this.$confirm("此操作将增加权限, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning", // text color in the middle
+      })
+        .then(async () => {
+          await this.$axios
+            .post(`/api/roles/${this.roleId}/rights`, { rids: rightId })
+            .then((res) => {
+              // console.log(res.data.meta);
+              if (res.data.meta.status != 200) {
+                this.$message.error("增加权限失败");
+              }
+              // When you finish the delete, then
+
+              this.loadRoletData();
+              this.$message({
+                type: "success",
+                message: "增加权限成功!",
+              });
+            });
+          this.dialogAssignRoleVisible = false;
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消权限添加",
+          });
+        });
+    },
+
+    async loadRightTreeData() {
+      await this.$axios.get("/api/rights/tree").then((res) => {
+        // console.log(res.data);
+        this.treeData = res.data.data;
+
+        // console.log(this.rightList);
+      });
+    },
+
+    resetChecked() {
+      this.$refs.tree.setCheckedKeys([]);
+    },
+
+    dialogAssignRoleOpen(role) {
+      // console.log(role);
+      // load the table data first
+      this.roleId = role.id;
+      this.defaultRightsload(role, this.dfkeys);
+      this.dialogAssignRoleVisible = true;
+    },
+    defaultRightsload(node, arr) {
+      if (!node.children) {
+        return arr.push(node.id);
+      }
+
+      node.children.forEach((item) => this.defaultRightsload(item, arr));
+      this.dfkeys = arr;
+      // console.log(this.dfkeys)
+    },
+    setRightDialog() {
+      this.dfkeys = [];
     },
   },
 };
