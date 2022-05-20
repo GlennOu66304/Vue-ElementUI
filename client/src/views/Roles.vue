@@ -46,11 +46,12 @@
 1.5 leve3 has a tag and close icon, gray color
 
 1.6 the close icon is clickble, it will pop up the mssage box to confirm  -->
+                <!-- level 1 -->
                 <el-col :span="5">
                   <el-tag>
-                    {{ item1.authName }}<i class="el-icon-close"></i> </el-tag
-                  ><i class="el-icon-caret-right"></i
-                ></el-col>
+                    {{ item1.authName }}
+                  </el-tag>
+                </el-col>
 
                 <el-col :span="19">
                   <el-row
@@ -63,9 +64,7 @@
                   >
                     <!-- level2 -->
                     <el-col :span="6">
-                      <el-tag type="success">
-                        {{ item2.authName
-                        }}<i class="el-icon-close"></i> </el-tag
+                      <el-tag type="success"> {{ item2.authName }} </el-tag
                       ><i class="el-icon-caret-right"></i
                     ></el-col>
 
@@ -75,7 +74,10 @@
                         v-for="(item3, index) in item2.children"
                         :key="index"
                         type="warning"
-                        >{{ item3.authName }}<i class="el-icon-close"></i>
+                        closable
+                        :disable-transitions="disabletransitions"
+                        @close="removeLevel3ById(scope.row, item3.id)"
+                        >{{ item3.authName }}
                       </el-tag>
                     </el-col>
                   </el-row>
@@ -132,6 +134,7 @@ export default {
     return {
       value: true,
       rolestList: [],
+      disabletransitions: true,
     };
   },
   created() {
@@ -147,6 +150,37 @@ export default {
 
         // console.log(this.rightList);
       });
+    },
+    async removeLevel3ById(role, rightId) {
+      // console.log(role)
+      await this.$confirm("此操作将永久删除该标签, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning", // text color in the middle
+      })
+        .then(async () => {
+          await this.$axios
+            .delete(`/api/roles/${role.id}/rights/${rightId}`)
+            .then((res) => {
+              // console.log(res.data.meta);
+              if (res.data.meta.status != 200) {
+                this.$message.error("删除权限失败");
+              }
+              // When you finish the delete, then
+
+              this.loadRoletData();
+              this.$message({
+                type: "success",
+                message: "删除权限成功!",
+              });
+            });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除",
+          });
+        });
     },
   },
 };

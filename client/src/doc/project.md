@@ -16,9 +16,9 @@
 
 1.6 the close icon is clickble, it will pop up the mssage box to confirm delete
 
-2.edit the role: dialog
+2.edit the role: dialog done
 
-3.delete the role:message box
+3.delete the role:message box no need
 
 3.assign the rights(Tree View)
 
