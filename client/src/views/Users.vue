@@ -291,13 +291,13 @@
 
       <el-row>
         <el-pagination
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page="currentPage4"
-          :page-sizes="[100, 200, 300, 400]"
-          :page-size="100"
+          @size-change="handlePageSizeChange"
+          @current-change="handleCurrentPagenumChange"
+          :current-page="queryInfo.pagenum"
+          :page-sizes="[1, 2, 15, 20]"
+          :page-size="queryInfo.pagesize"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="400"
+          :total="totalUsers"
         >
         </el-pagination>
       </el-row>
@@ -313,11 +313,11 @@ export default {
       queryInfo: {
         query: "",
         pagenum: 1,
-        pagesize: 8,
+        pagesize: 2,
       },
       userList: [],
-      currentPage4: 4,
-      total: "",
+      currentPage: 1,
+      totalUsers: 0,
       pagenum: "",
       dialogAddUserVisible: false, // for the user add
       dialogEditUserVisible: false, // for the user Edit
@@ -398,14 +398,22 @@ export default {
         .then((res) => {
           // console.log(res.data);
           this.userList = res.data.data.users;
+          this.totalUsers = res.data.data.total;
+          console.log(this.totalUsers);
         });
     },
 
-    handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
+    handlePageSizeChange(pagesize) {
+      // console.log(`每页 ${pagesize} 条`);
+      // when you change the size, first let the pagenum reset to 1
+      this.queryInfo.pagenum = 1;
+      this.queryInfo.pagesize = pagesize;
+      this.loadData();
     },
-    handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
+    handleCurrentPagenumChange(pagenum) {
+      // console.log(`当前页: ${pagenum}`);
+      this.queryInfo.pagenum = pagenum;
+      this.loadData();
     },
 
     // Status Change

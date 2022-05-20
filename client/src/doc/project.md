@@ -1,10 +1,60 @@
 **Vue CRM ElementUI Project （Baidu Method Failed, You need to try the bilibili method) **
 
-1.make the fake data from the console.log to the options item
-
-2.put the value into the selectRoleValue as the fake data.id
 
 
+Search
+
+Delet the user
+
+1.Reset the search field
+
+2.load the data again(query info is zero)
+
+## Goal
+
+1.load the table data done
+
+2.key word to load the data done
+
+3.add the user done
+
+4.edit user done
+
+5.delet the user done
+
+6.add the permisiion done 
+
+7.Pagination fix
+
+8.Status change done
+
+## Process
+
+Pagination:
+
+1.totalnumber update
+
+2.Current page update
+
+2.1.UI update
+
+2.2.Feature Update:
+
+Api： async function
+
+update the table data value, when you choose the certain page number
+
+
+
+3.page size update :
+
+3.1.UI update
+
+3.2.feature Update
+
+Api： async function
+
+update the table data value, when you choose the certain page number
 
 
 
