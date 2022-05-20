@@ -1,45 +1,5 @@
 **Vue CRM ElementUI Project （Baidu Method Failed, You need to try the bilibili method) **
 
-## Goal
-
-1.tree load
-
-1. 1.1row(line)
-
-1.2three columns(level1, level2, level3)
-
-1.3 leve1 has a tag and close icon, the right arrow,blue color
-
-1.4 leve2 has a tag and close icon, the right arrow,green color
-
-1.5 leve3 has a tag and close icon, gray color
-
-1.6 the close icon is clickble, it will pop up the mssage box to confirm delete
-
-2.edit the role: dialog done
-
-3.delete the role:message box no need
-
-3.assign the rights(Tree View)
-
-
-
-tree current load
-
-1.set the default tree data is zero
-
-1.1 When you open the dialog to load the row rights data by calling he recursion function
-
-Node and arry
-
-2. 2.recursion to get the tree data
-3. 2.1.if the node's value has no children, then push the node value into the arr
-4. and return
-5. 2.2 else check this value again call the recustion
-6. 2.3 finall call again and stop the recursion
-
-
-
 
 
 Search
@@ -50,7 +10,7 @@ Delet the user
 
 2.load the data again(query info is zero)
 
-## Users View
+## User Page
 
 1.load the table data done
 
