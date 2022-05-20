@@ -181,9 +181,9 @@
             <el-select v-model="selectedRoleValue" placeholder="请选择">
               <el-option
                 v-for="item in roleList"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
+                :key="item.id"
+                :label="item.roleName"
+                :value="item.id"
               >
               </el-option>
             </el-select>
@@ -203,44 +203,23 @@
       <!-- 2.data display -->
       <el-row>
         <!-- S:When the page come in, then load the data from  -->
-        <el-table :data="userList"  border stripe >
+        <el-table :data="userList" border stripe>
           <!-- 2.2 data row -->
           <!-- 2.1 column name first row -->
           <!-- index column -->
-          <el-table-column
-            label="列表"
-          
-            align="center"
-            type="index"
-            fixed
-          >
+          <el-table-column label="列表" align="center" type="index" fixed>
           </el-table-column>
 
-          <el-table-column
-            prop="username"
-            label="姓名"
-           
-            align="center"
-          >
+          <el-table-column prop="username" label="姓名" align="center">
           </el-table-column>
-          <el-table-column prop="email" label="邮箱"  align="center">
+          <el-table-column prop="email" label="邮箱" align="center">
           </el-table-column>
           <el-table-column prop="mobile" label="电话" align="center">
           </el-table-column>
-          <el-table-column
-            prop="role_name"
-            label="角色"
-           
-            align="center"
-          >
+          <el-table-column prop="role_name" label="角色" align="center">
           </el-table-column>
           <!-- data switch status -->
-          <el-table-column
-            prop="mg_state"
-            label="状态"
-          
-            align="center"
-          >
+          <el-table-column prop="mg_state" label="状态" align="center">
             <template slot-scope="scope">
               <el-switch
                 v-model="scope.row.mg_state"
@@ -257,7 +236,7 @@
             label="操作"
             align="center"
             fixed="right"
-           width="190"
+            width="190"
           >
             <template slot-scope="scope">
               <!-- edit button -->
@@ -330,7 +309,7 @@ export default {
         mobile: "",
         role_name: "",
       },
- 
+
       addUser_rules: {
         username: [
           // rules not filled the content
@@ -365,28 +344,16 @@ export default {
           // rule filled the content
         ],
       },
-      roleList: [
-        {
-          value: 34,
-          label: "测试角色2",
-        },
-        {
-          value: 40,
-          label: "test",
-        },
-        {
-          value: 41,
-          label: "dsd",
-        },
-      ],
+      roleList: [],
       roleInfo: {},
-
+      formLabelWidth: "10px",
       selectedRoleValue: "",
     };
   },
   created() {
     // load the table data first
     this.loadData();
+    this.loadRoleData();
   },
 
   methods: {
@@ -399,8 +366,18 @@ export default {
           // console.log(res.data);
           this.userList = res.data.data.users;
           this.totalUsers = res.data.data.total;
-          console.log(this.totalUsers);
+          // console.log(this.totalUsers);
         });
+    },
+    // load the role List data
+
+    async loadRoleData() {
+      await this.$axios.get("/api/roles").then((res) => {
+        // console.log(res.data);
+        this.roleList = res.data.data;
+
+        // console.log(this.roleList);
+      });
     },
 
     handlePageSizeChange(pagesize) {
@@ -580,5 +557,4 @@ export default {
 .el-row {
   margin-bottom: 20px;
 }
-
 </style>
