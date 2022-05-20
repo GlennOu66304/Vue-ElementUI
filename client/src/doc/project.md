@@ -2,6 +2,24 @@
 
 
 
+## Goal
+
+1.goods data load:pagination, table data render
+
+2.Add goods flow chart
+
+
+
+## Process
+
+1.render the data like the users page
+
+2. 2.Add goods flow chat
+
+
+
+
+
 Search
 
 Delet the user
