@@ -1,5 +1,29 @@
 **Vue CRM ElementUI Project （Baidu Method Failed, You need to try the bilibili method) **
 
+## Goal
+
+1.tree load
+
+1. 1.1row(line)
+
+1.2three columns(level1, level2, level3)
+
+1.3 leve1 has a tag and close icon, the right arrow,blue color
+
+1.4 leve2 has a tag and close icon, the right arrow,green color
+
+1.5 leve3 has a tag and close icon, gray color
+
+1.6 the close icon is clickble, it will pop up the mssage box to confirm delete
+
+2.edit the role: dialog
+
+3.delete the role:message box
+
+3.assign the rights(Tree View)
+
+
+
 
 
 Search
@@ -10,7 +34,7 @@ Delet the user
 
 2.load the data again(query info is zero)
 
-## Goal
+## Users View
 
 1.load the table data done
 
