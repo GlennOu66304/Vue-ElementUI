@@ -16,17 +16,25 @@
 
 2. 2.Add goods flow chat
 
+1.build a new router and new  view (router and UI)
 
+2.click the  add button to go to this view page
 
+3.bread crumb
 
+4.tab UI build
 
-Search
+5.item content load or write it by my own
 
-Delet the user
+6.API use to view it
 
-1.Reset the search field
+7.clik the tab item, then pocess bar will also change
 
-2.load the data again(query info is zero)
+7.1 process item acive is controlled by the active index
+
+7.2 tab item active is controlled by the v-model
+
+7.3 apply the process activeitem into the tab item
 
 ## User Page
 

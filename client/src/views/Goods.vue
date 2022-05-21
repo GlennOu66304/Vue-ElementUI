@@ -34,7 +34,9 @@
         <!-- 1.3 add new user : Modal icon effect use-->
         <!-- S:1. Modal Compoenent use 2. call the api request-->
         <el-col :span="4">
-          <el-button type="primary">添加商品</el-button></el-col
+          <el-button type="primary" @click="goAddGood"
+            >添加商品</el-button
+          ></el-col
         >
       </el-row>
 
@@ -133,6 +135,9 @@ export default {
   },
 
   methods: {
+    goAddGood() {
+      this.$router.push("/goods/add");
+    },
     async loadGoodsData() {
       await this.$axios
         .get("/api/goods", { params: this.queryInfo })

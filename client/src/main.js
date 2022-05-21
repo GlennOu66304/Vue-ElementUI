@@ -45,8 +45,10 @@ import {
   TabPane,
   Dialog,
   Tag,
-  Tree
-  
+  Tree,
+  Steps,
+  Step,
+  Alert
 } from "element-ui";
 
 Vue.use(Form);
@@ -80,6 +82,9 @@ Vue.use(TabPane);
 Vue.use(Dialog);
 Vue.use(Tag);
 Vue.use(Tree);
+Vue.use(Steps);
+Vue.use(Step);
+Vue.use(Alert);
 Vue.config.productionTip = false;
 Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm;

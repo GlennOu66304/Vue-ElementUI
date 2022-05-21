@@ -115,7 +115,7 @@ export default {
         // save the token into the session
         window.sessionStorage.setItem("token", res.data.token);
         // router push to the /home section
-        this.$router.push("/home");
+        this.$router.push("/welcome");
       });
     },
 
