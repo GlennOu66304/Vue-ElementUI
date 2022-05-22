@@ -2,6 +2,11 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router/index.js";
 import axios from "axios";
+import VueQuillEditor from "vue-quill-editor";
+// require styles
+import "quill/dist/quill.core.css";
+import "quill/dist/quill.snow.css";
+import "quill/dist/quill.bubble.css";
 Vue.prototype.$axios = axios;
 axios.interceptors.request.use(
   (config) => {
@@ -48,7 +53,7 @@ import {
   Tree,
   Steps,
   Step,
-  Alert
+  Alert,
 } from "element-ui";
 
 Vue.use(Form);
@@ -88,6 +93,10 @@ Vue.use(Alert);
 Vue.config.productionTip = false;
 Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm;
+
+
+Vue.use(VueQuillEditor /* { default global options } */);
+
 new Vue({
   router,
   render: (h) => h(App),

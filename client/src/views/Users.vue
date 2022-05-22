@@ -114,7 +114,7 @@
           <!-- EditUser dialog section -->
           <el-dialog title="编辑用户" :visible.sync="dialogEditUserVisible">
             <el-form
-              :model="addUser_form"
+              :model="editUser_form"
               :rules="addUser_rules"
               ref="editUserFormRef"
             >
@@ -125,7 +125,7 @@
                 prop="username"
               >
                 <el-input
-                  v-model="addUser_form.username"
+                  v-model="editUser_form.username"
                   autocomplete="off"
                   disabled
                 ></el-input>
@@ -138,7 +138,7 @@
                 prop="email"
               >
                 <el-input
-                  v-model="addUser_form.email"
+                  v-model="editUser_form.email"
                   type="email"
                   autocomplete="off"
                 ></el-input>
@@ -150,7 +150,7 @@
                 prop="mobile"
               >
                 <el-input
-                  v-model="addUser_form.mobile"
+                  v-model="editUser_form.mobile"
                   autocomplete="off"
                 ></el-input>
               </el-form-item>
@@ -310,6 +310,13 @@ export default {
         role_name: "",
       },
 
+ editUser_form: {
+        username: "",
+        password: "",
+        email: "",
+        mobile: "",
+        role_name: "",
+      },
       addUser_rules: {
         username: [
           // rules not filled the content
@@ -346,7 +353,7 @@ export default {
       },
       roleList: [],
       roleInfo: {},
-      formLabelWidth: "10px",
+      formLabelWidth: "130px",
       selectedRoleValue: "",
     };
   },
@@ -444,7 +451,7 @@ export default {
       this.dialogEditUserVisible = true;
       const res = await this.$axios.get(`/api/users/${id}`);
       // console.log(res.data.data);
-      this.addUser_form = res.data.data;
+      this.editUser_form = res.data.data;
     },
     editUserSubmit() {
       // then call the update data api
@@ -453,12 +460,12 @@ export default {
 
         const res = await this.$axios.put(
           `/api/users/${this.addUser_form.id}`,
-          this.addUser_form
+          this.editUser_form
         );
         // console.log(res.data.data);
-        this.addUser_form = res.data.data;
+        this.editUser_form = res.data.data;
 
-        // login failed
+
 
         if (res.data.meta.status != 200) {
           // console.log("login failed");
