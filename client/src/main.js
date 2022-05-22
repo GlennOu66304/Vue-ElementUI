@@ -54,6 +54,7 @@ import {
   Steps,
   Step,
   Alert,
+  Upload
 } from "element-ui";
 
 Vue.use(Form);
@@ -90,6 +91,7 @@ Vue.use(Tree);
 Vue.use(Steps);
 Vue.use(Step);
 Vue.use(Alert);
+Vue.use(Upload);
 Vue.config.productionTip = false;
 Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm;

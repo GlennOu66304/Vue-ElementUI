@@ -92,9 +92,19 @@
             >商品参数</el-tab-pane
           >
           <el-tab-pane label="商品属性">商品属性</el-tab-pane>
-          <el-tab-pane label="商品图片"
-            ><el-button type="primary">上传图片</el-button></el-tab-pane
-          >
+          <el-tab-pane label="商品图片">
+            <el-upload
+              class="upload-demo"
+              action="https://jsonplaceholder.typicode.com/posts/"
+             
+            
+            >
+              <el-button size="small" type="primary">点击上传</el-button>
+              <div slot="tip" class="el-upload__tip">
+                只能上传jpg/png文,且不超过500kb
+              </div>
+            </el-upload>
+          </el-tab-pane>
           <el-tab-pane label="商品内容">
             <!-- bidirectional data binding（双向数据绑定） -->
             <quill-editor
@@ -158,6 +168,7 @@ export default {
       editorOption: {
         // some quill options
       },
+     
     };
   },
   created() {
@@ -165,12 +176,15 @@ export default {
     // this.loadGoodsData();
   },
 
-  methods: {},
+  methods: {
+  
+  },
+
   components: {},
 };
 </script>
 
-<style >
+<style>
 .el-breadcrumb {
   margin-bottom: 20px;
 }
@@ -192,7 +206,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  
 }
 /* You need to remove the scope and less to let css apply to the rich text editor */
 .ql-editor {
