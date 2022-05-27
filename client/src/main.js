@@ -7,7 +7,10 @@ import VueQuillEditor from "vue-quill-editor";
 import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
 import "quill/dist/quill.bubble.css";
+import TreeTable from "vue-table-with-tree-grid";
+
 Vue.prototype.$axios = axios;
+Vue.component("tree-table", TreeTable);
 axios.interceptors.request.use(
   (config) => {
     config.headers.Authorization = window.sessionStorage.getItem("token");
@@ -54,7 +57,7 @@ import {
   Steps,
   Step,
   Alert,
-  Upload
+  Upload,
 } from "element-ui";
 
 Vue.use(Form);
@@ -95,7 +98,6 @@ Vue.use(Upload);
 Vue.config.productionTip = false;
 Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm;
-
 
 Vue.use(VueQuillEditor /* { default global options } */);
 
