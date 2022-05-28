@@ -2,7 +2,30 @@
 
 
 
+
+
 ## Goal
+
+1.output the render yes or no icon in the page
+
+2.if the categories is true, yes, else false
+
+3.true color light green or false red
+
+
+
+## Process
+
+1.logic;template slot to assign the data into the row
+
+2. 2.give the tree table template slot attributes
+3. 3.row data should be replaced with slot
+4. 4.v-if show the true
+5. 5.v-else
+
+
+
+## GoodsList
 
 1.goods data load:pagination, table data render
 

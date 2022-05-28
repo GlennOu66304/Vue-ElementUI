@@ -44,21 +44,37 @@
           show-index
           index-text="#"
         >
-          <!-- 2.3 data edit, delete, assign the perssion :Modal Pop up-->
-          <!-- <el-table-column label="操作" align="center" fixed="right">
-            <el-button
+          <template slot="isOk" slot-scope="scope">
+            <i
+              class="el-icon-success"
+              style="color:lightgreen;"
+              v-if="scope.row.cat_deleted === false"
+            ></i>
+            <i class="el-icon-error" style="color:red;" v-else></i>
+          </template>
+
+          <template slot="order" slot-scope="scope">
+            <el-tag v-if="scope.row.cat_level === 0" size="mini">一级</el-tag>
+            <el-tag
+              type="success"
+              v-else-if="scope.row.cat_level === 1"
               size="mini"
-              type="primary"
-              @click="handleEdit(scope.$index, scope.row)"
+              >二级</el-tag
+            >
+            <el-tag type="info" size="mini" v-else>三级</el-tag>
+          </template>
+          <!-- 2.3 data edit, delete, assign the perssion :Modal Pop up-->
+          <template slot="opt" slot-scope="scope">
+            <el-button size="mini" type="primary" @click="handleEdit(scope.row)"
               ><i class="el-icon-edit"></i
             ></el-button>
             <el-button
               size="mini"
               type="danger"
-              @click="handleDelete(scope.$index, scope.row)"
+              @click="handleDelete(scope.row)"
               ><i class="el-icon-delete"></i
             ></el-button>
-          </el-table-column> -->
+          </template>
         </tree-table>
       </el-row>
       <!-- 2.4 pagination section:total page, page size, current page, go to the target page -->
@@ -81,6 +97,8 @@
 <script>
 export default {
   name: "Goods",
+  components: {},
+
   data() {
     return {
       queryInfo: {
@@ -98,12 +116,14 @@ export default {
           label: "分类名称",
         },
 
-        { prop: "cat_deleted", label: "是否有效" },
+        { plabel: "是否有效", type: "template", template: "isOk" },
 
-        { prop: "cat_level", label: "排序" },
+        { label: "排序", type: "template", template: "order" },
+        { label: "操作流程", type: "template", template: "opt" },
       ],
     };
   },
+
   created() {
     // load the table data first
     this.loadCategoryData();
@@ -121,7 +141,7 @@ export default {
           this.categoryData = res.data.data.result;
           // console.log(this.categoryData)
           this.totalCategories = res.data.data.total;
-          console.log(this.totalCategories);
+          // console.log(this.totalCategories);
         });
     },
 
@@ -135,10 +155,9 @@ export default {
     handleCurrentPagenumChange(pagenum) {
       // console.log(`当前页: ${pagenum}`);
       this.queryInfo.pagenum = pagenum;
-      this.CategoryData();
+      this.loadCategoryData();
     },
   },
-  components: {},
 };
 </script>
 
