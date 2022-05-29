@@ -9,8 +9,9 @@
       <el-breadcrumb-item>数据报表</el-breadcrumb-item>
     </el-breadcrumb>
 
-    <!-- table content -->
+    <!-- charts area -->
     <el-card>
+     <span>用户来源</span>
       <div id="main" style="width:600px;height:300px"></div>
     </el-card>
   </div>
@@ -20,73 +21,42 @@
 import * as echarts from "echarts";
 export default {
   name: "Reports",
-  data() {
-    const item = {
-      date: "2016-05-02",
-      name: "王小虎",
-      phone: "15647823020",
-      email: "test@qq.com",
-      roles: "admin",
-    };
-    return {
-      tableData: Array(20).fill(item),
+  components: {},
 
-      options: [
-        {
-          value: "选项1",
-          label: "黄金糕",
-        },
-        {
-          value: "选项2",
-          label: "双皮奶",
-        },
-        {
-          value: "选项3",
-          label: "蚵仔煎",
-        },
-        {
-          value: "选项4",
-          label: "龙须面",
-        },
-        {
-          value: "选项5",
-          label: "北京烤鸭",
-        },
-      ],
+  data() {
+    return {
+     
+
       value: "",
     };
   },
+
   // created: {
   //   // load the table data first
   // },
-  mounted() {
+  async mounted() {
     // initialize the echarts instance
     var myChart = echarts.init(document.getElementById("main"));
     // Draw the chart
-    myChart.setOption({
-      title: {
-        text: "用户来源",
-      },
-      tooltip: {},
-      xAxis: {
-        data: ["shirt", "cardigan", "chiffon", "pants", "heels", "socks"],
-      },
-      yAxis: {},
-      series: [
-        {
-          name: "sales",
-          type: "bar",
-          data: [5, 20, 36, 10, 10, 20],
-        },
-      ],
-    });
+
+    await this.$axios
+      .get("api/reports/type/1")
+      .then((res) => {
+        myChart.setOption(res.data.data);
+      })
+      .catch(() => {
+        this.$message({
+          type: "info",
+          message: "获取折线图失败",
+        });
+      });
   },
+
   methods: {
     //  indexMethod(index) {
     //     return index * 2;
     //   }
-  },
-  components: {},
+  }
 };
 </script>
 
