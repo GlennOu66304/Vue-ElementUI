@@ -126,6 +126,8 @@
 <script>
 export default {
   name: "GoodsAdd",
+  components: {},
+
   data() {
     return {
       tabPosition: "left",
@@ -171,6 +173,7 @@ export default {
      
     };
   },
+
   created() {
     // load the table data first
     // this.loadGoodsData();
@@ -178,13 +181,15 @@ export default {
 
   methods: {
   
-  },
-
-  components: {},
+  }
 };
 </script>
 
-<style>
+<style >
+/* You need to remove the scope and less to let css apply to the rich text editor and add !important */
+.ql-editor{
+  height: 300px !important;
+}
 .el-breadcrumb {
   margin-bottom: 20px;
 }
@@ -201,14 +206,6 @@ export default {
 .addButton {
   margin-top: 10px;
 }
-.edit_container {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-}
-/* You need to remove the scope and less to let css apply to the rich text editor */
-.ql-editor {
-  height: 300px;
-}
+
+
 </style>

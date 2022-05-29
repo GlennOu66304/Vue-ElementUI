@@ -2,9 +2,29 @@
 
 
 
-
-
 ## Goal
+
+1.GoodsCategory Pop up modal 
+
+2.paramas
+
+2.1 When you open the paramas page, the select option will load the list inthe search bar;
+
+2.2 only when you choose the third level option, you can activate the edit button;
+
+computed and disable option together,:function,if and else
+
+2.3 The defaut button is the only(static), also send the id into this backend request
+
+2.4 When the tab change, send the dynamic data into the new tabs
+
+2.5 computed options
+
+3.Orders
+
+4.Echats Data
+
+## Category
 
 1.output the render yes or no icon in the page
 

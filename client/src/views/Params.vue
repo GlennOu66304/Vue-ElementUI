@@ -13,44 +13,44 @@
     <el-card>
       <!-- Select option -->
       <el-row :gutter="20">
-        <span>选择商品分类:</span>
-        <el-select v-model="value" placeholder="请选择">
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
-        </el-select>
+        <el-col>
+          <span>选择商品分类:</span>
+          <!-- if the hover effect does not work, you could turn off the dev tool -->
+          <el-cascader
+            expand-trigger="hover"
+            :options="options"
+            :props="catProps"
+            v-model="selectedValue"
+            @change="handleChange"
+          ></el-cascader>
+        </el-col>
       </el-row>
       <!-- tab shift section -->
       <el-row>
         <el-tabs v-model="activeName" @tab-click="handleClick">
           <!-- tbapane1 -->
-          <el-tab-pane label="动态参数" name="first">
+          <el-tab-pane label="动态参数" name="many">
             <!-- button -->
-            <el-button size="small" round type="primary"> 添加参数 </el-button>
+            <el-button :disabled="isDisable" size="small" round type="primary">
+              添加参数
+            </el-button>
 
             <!-- table data -->
 
-            <el-table :data="tableData" border>
+            <el-table :data="manyTableData" border>
               <!-- 2.2 data row -->
               <!-- 2.1 column name first row -->
               <!-- index column -->
               <el-table-column
-                label="列表"
-                width="140"
-                align="center"
+               
                 type="index"
-                fixed
+                
               >
               </el-table-column>
               <el-table-column
-                prop="name"
-                label="姓名"
-                width="140"
-                align="center"
+                prop="attr_name"
+                label="参数名称"
+                
               >
               </el-table-column>
 
@@ -86,12 +86,13 @@
           </el-tab-pane>
 
           <!-- tabpane2 -->
-          <el-tab-pane label="静态属性" name="second">
-
-            <el-button size="small" round type="primary"> 添加属性</el-button>
+          <el-tab-pane label="静态属性" name="only">
+            <el-button :disabled="isDisable" size="small" round type="primary">
+              添加属性</el-button
+            >
             <!-- table data -->
 
-            <el-table :data="tableData" border>
+            <el-table :data="onlyTableData" border>
               <!-- 2.2 data row -->
               <!-- 2.1 column name first row -->
               <!-- index column -->
@@ -104,8 +105,8 @@
               >
               </el-table-column>
               <el-table-column
-                prop="name"
-                label="姓名"
+                prop="attr_name"
+                label="参数名称"
                 width="140"
                 align="center"
               >
@@ -150,55 +151,101 @@
 <script>
 export default {
   name: "Params",
+  components: {},
+
   data() {
-    const item = {
-      date: "2016-05-02",
-      name: "王小虎",
-      phone: "15647823020",
-      email: "test@qq.com",
-      roles: "admin",
-    };
     return {
-      tableData: Array(20).fill(item),
-      activeName: 'second',
-      options: [
-        {
-          value: "选项1",
-          label: "黄金糕",
-        },
-        {
-          value: "选项2",
-          label: "双皮奶",
-        },
-        {
-          value: "选项3",
-          label: "蚵仔煎",
-        },
-        {
-          value: "选项4",
-          label: "龙须面",
-        },
-        {
-          value: "选项5",
-          label: "北京烤鸭",
-        },
-      ],
-      value: "",
+      manyTableData: [],
+      onlyTableData: [],
+      options: [],
+      selectedValue: [],
+      catProps: {
+        //first layer
+        value: "cat_id",
+        label: "cat_name",
+        children: "children",
+      },
+      activeName: "many",
     };
   },
+
+  computed: {
+    isDisable() {
+      if (this.selectedValue.length === 3) {
+        return false;
+      }
+      return true;
+    },
+    cat_id() {
+      if (this.selectedValue.length === 3) {
+        return this.selectedValue[2];
+      }
+      return null;
+    },
+  },
+
   // created: {
   //   // load the table data first
   // },
+  created() {
+    // load the table data first
+    this.loadAllCategoryData();
+  },
 
   methods: {
-    //  indexMethod(index) {
-    //     return index * 2;
-    //   }
-    handleClick(tab, event) {
-      console.log(tab, event);
+    // Static
+    async loadAllCategoryData() {
+      await this.$axios.get("/api/categories").then((res) => {
+        // console.log(res.data);
+        this.options = res.data.data;
+        // console.log(this.options);
+        // this.totalCategories = res.data.data.total;
+        // console.log(this.totalCategories);
+      });
+    },
+
+    async handleChange() {
+      // if the output value length is less than3, then reset the value to zero
+      //otherwise assign the value
+
+      if (this.selectedValue.length !== 3) {
+        this.selectedValue = [];
+        return;
+      }
+
+      await this.$axios
+        .get(`/api/categories/${this.cat_id}/attributes`, {
+          params: { sel: this.activeName },
+        })
+        .then((res) => {
+          // console.log(res.data);
+          this.manyTableData = res.data.data;
+          console.log(this.tableData);
+         
+        });
+
+      // if ((this.activeName == "many")) {
+      //   this.manyTableData = res.data.data;
+      // } else {
+      //   this.onlyTableData = res.data.data;
+      // }
+    },
+
+    async handleClick() {
+      // this.selectedValue = value;
+      await this.$axios
+        .get(`/api/categories/${this.cat_id}/attributes`, {
+          params: { sel: this.activeName },
+        })
+        .then((res) => {
+          // console.log(res.data);
+          this.onlyTableData = res.data.data;
+          // console.log(this.categoryData)
+          // this.totalCategories = res.data.data.total;
+          // console.log(this.totalCategories);
+        });
     },
   },
-  components: {},
 };
 </script>
 
@@ -212,7 +259,7 @@ export default {
 .el-row {
   margin-bottom: 20px;
 }
-.el-button{
+.el-button {
   margin-bottom: 20px;
 }
 </style>
