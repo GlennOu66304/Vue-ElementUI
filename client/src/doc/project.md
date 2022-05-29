@@ -393,7 +393,7 @@ npm i less-loader@5.0.0 less
 Tutorial Video
 
 [Vue实战项目：电商管理系统（Element-UI）](https://www.bilibili.com/video/BV1E7411c7M8?p=3)
-
+[Vue实战项目：电商管理系统（Element-UI）](https://www.bilibili.com/video/BV18B4y1T7bS?p=188)
 Demo:
 
 1.API
