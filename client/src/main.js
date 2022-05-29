@@ -58,7 +58,9 @@ import {
   Step,
   Alert,
   Upload,
-  Cascader
+  Cascader,
+  Timeline,
+  TimelineItem
 } from "element-ui";
 
 Vue.use(Form);
@@ -97,12 +99,32 @@ Vue.use(Step);
 Vue.use(Alert);
 Vue.use(Upload);
 Vue.use(Cascader);
+Vue.use(Timeline);
+Vue.use(TimelineItem);
 Vue.config.productionTip = false;
 Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm;
 
 Vue.use(VueQuillEditor /* { default global options } */);
-
+Vue.filter("dateFormats", function(value) {
+  if (value == null) {
+    return "";
+  } else {
+    let date = new Date(value);
+    let y = date.getFullYear(); // 年
+    let MM = date.getMonth() + 1; // 月
+    MM = MM < 10 ? "0" + MM : MM;
+    let d = date.getDate(); // 日
+    d = d < 10 ? "0" + d : d;
+    let h = date.getHours(); // 时
+    h = h < 10 ? "0" + h : h;
+    let m = date.getMinutes(); // 分
+    m = m < 10 ? "0" + m : m;
+    let s = date.getSeconds(); // 秒
+    s = s < 10 ? "0" + s : s;
+    return y + "-" + MM + "-" + d + " " + h + ":" + m + ":" + s;
+  }
+});
 new Vue({
   router,
   render: (h) => h(App),

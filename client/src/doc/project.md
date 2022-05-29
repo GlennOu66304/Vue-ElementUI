@@ -1,6 +1,18 @@
 **Vue CRM ElementUI Project （Baidu Method Failed, You need to try the bilibili method) **
 
+Load the data, 
 
+then apply it 
+
+## [Error: connect ETIMEDOUT] #1474
+
+
+
+1.Change the host to localhost or 127.0.0.1 to try
+
+2.check if the firewall open the 3306 port permission
+
+[[Error: connect ETIMEDOUT] #1474](https://github.com/mysqljs/mysql/issues/1474)
 
 ## Goal
 
